@@ -44,7 +44,7 @@ function getHostnameIfValidUrl(input) {
 app.post('/api/shorturl', (req, res) => {
   const urlString = req.body.url;
   const hostname = getHostnameIfValidUrl(urlString);
-  
+
   if (!hostname) return res.json({ error: 'invalid url' });
 
   dns.lookup(hostname, (err) => {
@@ -65,7 +65,7 @@ app.post('/api/shorturl', (req, res) => {
       original_url: urlString,
       short_url: shortUrl
     };
-    
+
     urlDatabase.push(created);
 
     return res.json({
